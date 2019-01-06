@@ -102,7 +102,7 @@ namespace fr34kyn01535.GlobalBan
                     if (int.TryParse(command[2], out duration))
                     {
 
-                        GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, command[1], duration);
+                        GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, command[1], duration, otherPlayer.IP, DatabaseManager.BanType.ByUserName);
                         UnturnedChat.Say(GlobalBan.Instance.Translate("command_ban_public_reason", charactername, command[1]));
                         if (isOnline)
                             Provider.kick(steamid, command[1]);
@@ -116,14 +116,14 @@ namespace fr34kyn01535.GlobalBan
                 else if (command.Length == 2)
                 {
 
-                    GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, command[1], 0);
+                    GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, command[1], 0, otherPlayer.IP, DatabaseManager.BanType.ByUserName);
                     UnturnedChat.Say(GlobalBan.Instance.Translate("command_ban_public_reason", charactername, command[1]));
                     if (isOnline)
                         Provider.kick(steamid, command[1]);
                 }
                 else
                 {
-                    GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, "", 0);
+                    GlobalBan.Instance.Database.BanPlayer(charactername, steamid.ToString(), adminName, "", 0, otherPlayer.IP, DatabaseManager.BanType.ByUserName);
                     UnturnedChat.Say(GlobalBan.Instance.Translate("command_ban_public", charactername));
                     if (isOnline)
                         Provider.kick(steamid, GlobalBan.Instance.Translate("command_ban_private_default_reason"));

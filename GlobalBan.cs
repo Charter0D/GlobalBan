@@ -74,8 +74,8 @@ namespace fr34kyn01535.GlobalBan
             
             if (Configuration.Instance.KickInsteadReject)
             {
-                DatabaseManager.Ban ban = Database.GetBan(player.Id);
-                if(ban != null && (ban.Duration == -1 || ban.Time.AddSeconds(ban.Duration) > DateTime.Now))
+                DatabaseManager.Ban ban = Database.GetBan(player.Id, player.IP);
+                if(ban != null)
                     StartCoroutine(KickPlayer(player,ban));
             }
         }
